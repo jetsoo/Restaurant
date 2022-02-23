@@ -3,7 +3,7 @@ public class Drink extends Item{
     private boolean withExtraWater;
 
     public Drink(String name, boolean available,Double price, boolean alcoholic, boolean withExtraWater) {
-        super(name, available,price);
+        super(name, available,price,Typ.DRINK);
         this.alcoholic = alcoholic;
         this.withExtraWater = withExtraWater;
     }
@@ -27,5 +27,14 @@ public class Drink extends Item{
 
     public void setWithExtraWater(boolean withExtraWater) {
         this.withExtraWater = withExtraWater;
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() +
+                "Drink{" +
+                "alcoholic=" + alcoholic +
+                ", withExtraWater=" + withExtraWater +
+                '}';
     }
 }

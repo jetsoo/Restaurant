@@ -2,14 +2,24 @@ public class Item {
     private String name;
     private boolean available;
     private double price;
+    private Typ typ;
 
-    public Item(String name, boolean available,double price) {
+    public Item(String name, boolean available,double price, Typ typ) {
         this.name = name;
         this.available = available;
         this.price = price;
+        this.typ = typ;
     }
 
     public Item() {
+    }
+
+    public Typ getTyp() {
+        return typ;
+    }
+
+    public void setTyp(Typ typ) {
+        this.typ = typ;
     }
 
     public String getName() {
@@ -34,5 +44,15 @@ public class Item {
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    @Override
+    public String toString() {
+        return "Item{" +
+                "name='" + name + '\'' +
+                ", available=" + available +
+                ", price=" + price +
+                ", typ=" + typ +
+                '}';
     }
 }

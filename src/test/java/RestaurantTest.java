@@ -39,10 +39,10 @@ class RestaurantTest {
     @Test
     void shouldReturn1Point50(){
         var restaurant = new Restaurant();
-        var item = new Item("asf",true,1.50);
-        var item2 = new Item("asdf",true,6.50);
-        var item3 = new Item("ashdfgf",true,5.50);
-        var item4 = new Item("ajssf",true,9.50);
+        var item = new Item("asf",true,1.50,Typ.DESERT);
+        var item2 = new Item("asdf",true,6.50,Typ.DRINK);
+        var item3 = new Item("ashdfgf",true,5.50,Typ.MAIN_COURSE);
+        var item4 = new Item("ajssf",true,9.50,Typ.DRINK);
         ArrayList<Item> items = new ArrayList<>();
         items.add(item);
         items.add(item2);
@@ -55,10 +55,10 @@ class RestaurantTest {
     @Test
     void shouldThrowNumberFormatException(){
         var restaurant = new Restaurant();
-        var item = new Item("asf",true,1.50);
-        var item2 = new Item("asdf",true,-6.50);
-        var item3 = new Item("ashdfgf",true,5.50);
-        var item4 = new Item("ajssf",true,9.50);
+        var item = new Item("asf",true,1.50,Typ.DESERT);
+        var item2 = new Item("asdf",true,-6.50,Typ.DESERT);
+        var item3 = new Item("ashdfgf",true,5.50,Typ.DESERT);
+        var item4 = new Item("ajssf",true,9.50,Typ.DESERT);
         ArrayList<Item> items = new ArrayList<>();
         items.add(item);
         items.add(item2);
@@ -74,10 +74,10 @@ class RestaurantTest {
     @Test
     void shouldReturnFive() {
         var restaurant = new Restaurant();
-        var item = new Item("asf", true, 1.00);
-        var item2 = new Item("asdf", true, 6.00);
-        var item3 = new Item("ashdfgf", true, 3.50);
-        var item4 = new Item("ajssf", true, 9.50);
+        var item = new Item("asf", true, 1.00,Typ.DESERT);
+        var item2 = new Item("asdf", true, 6.00,Typ.DESERT);
+        var item3 = new Item("ashdfgf", true, 3.50,Typ.DESERT);
+        var item4 = new Item("ajssf", true, 9.50,Typ.DESERT);
         ArrayList<Item> items = new ArrayList<>();
         items.add(item);
         items.add(item2);
@@ -145,10 +145,10 @@ class RestaurantTest {
     @Test
     void shouldThrowIllegalArgumentExceptionB() {
         var restaurant = new Restaurant();
-        var item = new Item("asf", true, 1.00);
-        var item2 = new Item("asdf", true, 6.00);
-        var item3 = new Item("ashdfgf", true, 3.50);
-        var item4 = new Item("ajssf", true, 9.50);
+        var item = new Item("asf", true, 1.00,Typ.DESERT);
+        var item2 = new Item("asdf", true, 6.00,Typ.DESERT);
+        var item3 = new Item("ashdfgf", true, 3.50,Typ.DESERT);
+        var item4 = new Item("ajssf", true, 9.50,Typ.DESERT);
         ArrayList<Item> items = new ArrayList<>();
         items.add(item);
         items.add(item2);
@@ -157,7 +157,7 @@ class RestaurantTest {
         restaurant.setMenu(items);
         assertThrows(IllegalArgumentException.class,
                 () ->{
-                    restaurant.createNewBaseItem("asf",true,2.50);
+                    restaurant.createNewBaseItem("asf",true,2.50,Typ.DESERT);
                 });
 
     }

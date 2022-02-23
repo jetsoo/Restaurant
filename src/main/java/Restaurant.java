@@ -28,6 +28,64 @@ public class Restaurant {
         return payment;
     }
 
+    public double findItemByName(String name){
+        double price = -1.00;
+        for(int i = 0; i<this.menu.size();i++){
+            if(this.menu.get(i).getName().equals(name)){
+                price = this.menu.get(i).getPrice();
+            }
+        }
+        if(price <= -1.00){
+            throw  new IllegalArgumentException("No food by given name found!");
+        }
+        System.out.println("The price of " + name + " is " + price + "€");
+        return price;
+    }
+
+    public ArrayList<Item> findAllByTyp(Typ typ){
+        ArrayList<Item> itemList = new ArrayList<>();
+        for(Item item : this.menu){
+            if(item.getTyp().equals(typ)){
+                itemList.add(item);
+            }
+        }
+        if(itemList.isEmpty()){
+            throw new IllegalArgumentException("No item by given typ found!");
+        }
+        System.out.println("All Items on the menu of " + typ + " are :");
+        for(int i = 0; i< itemList.size();i++){
+            System.out.println(itemList.get(i).toString());
+        }
+        return itemList;
+    }
+
+    public ArrayList<Item> findAllCheaperThan(double maxPrice){
+        ArrayList<Item> itemList = new ArrayList<>();
+        for(Item item : this.menu){
+            if(item.getPrice() <= maxPrice){
+                itemList.add(item);
+            }
+        }
+        if(itemList.isEmpty()){
+            throw new IllegalArgumentException("No item cheaper than given price");
+        }
+        return  itemList;
+    }
+
+    public  ArrayList<Item> findAllByTypAndCheaperThan(Typ typ, double maxPrice){
+        ArrayList<Item> itemList = new ArrayList<>();
+        for(Item item : this.menu){
+            if(item.getTyp().equals(typ) && item.getPrice() <= maxPrice){
+                itemList.add(item);
+            }
+        }
+        if(itemList.isEmpty()){
+            throw new IllegalArgumentException("No item wih given parameters found!");
+        }
+        return itemList;
+    }
+
+
     public double cheapestPrice(){
         double lowestPrice = Double.MAX_VALUE;
         String name = "";
@@ -73,13 +131,13 @@ public class Restaurant {
         return  salary;
     }
 
-    public void createNewBaseItem(String name, boolean available, double price){
+    public void createNewBaseItem(String name, boolean available, double price,Typ typ){
         for(int i = 0; i< this.menu.size();i++){
             if(name.equals(this.menu.get(i).getName())){
                 throw new IllegalArgumentException("item with give name already exists");
             }
         }
-        Item item = new Item(name,available,price);
+        Item item = new Item(name,available,price,typ);
         this.menu.add(item);
     }
 

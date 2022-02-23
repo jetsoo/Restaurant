@@ -3,7 +3,13 @@ public class Food extends Item{
     private boolean cooked;
 
     public Food(String name, boolean available,double price, boolean vegeterian, boolean cooked) {
-        super(name, available,price );
+        super(name, available,price,Typ.FOOD);
+        this.vegeterian = vegeterian;
+        this.cooked = cooked;
+    }
+
+    public Food(String name, boolean available, double price, Typ typ, boolean vegeterian, boolean cooked) {
+        super(name, available, price, typ);
         this.vegeterian = vegeterian;
         this.cooked = cooked;
     }
@@ -27,5 +33,14 @@ public class Food extends Item{
 
     public void setCooked(boolean cooked) {
         this.cooked = cooked;
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() +
+                "Food{" +
+                "vegeterian=" + vegeterian +
+                ", cooked=" + cooked +
+                '}';
     }
 }

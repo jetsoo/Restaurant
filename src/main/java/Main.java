@@ -1,5 +1,7 @@
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args){
@@ -12,15 +14,19 @@ public class Main {
         employes.add(employe2);
         employes.add(employe3);
 
-        Item lasagne = new Food("Lasagne",true,7.50,false,true);
+        Item lasagne = new Food("Lasagne",true,7.50,Typ.MAIN_COURSE,false,true);
         Item whiteWine = new Drink("Chardonnay",true,23.90,true,false);
         Item coffee = new Drink("Capuccino",true,3.40,false,true);
-        Item pizza = new Food("Pizza",true,8.70,false,true);
+        Item pizza = new Food("Pizza",true,8.70,Typ.MAIN_COURSE,false,true);
+        Item pommes = new Food("Pommes",true,2.45,Typ.FOOD,true,true);
+        Item onionRings = new Food("Onion Rings",true,3.99,Typ.FOOD,false,true);
         ArrayList<Item> items = new ArrayList<>();
         items.add(lasagne);
         items.add(whiteWine);
         items.add(coffee);
         items.add(pizza);
+        items.add(pommes);
+        items.add(onionRings);
 
         Restaurant alfredos = new Restaurant("Alfredos",45000.00,employes,items);
 
@@ -28,6 +34,17 @@ public class Main {
         alfredos.payAllEmployeesFull();
         alfredos.payEmployeById(3L);
         System.out.println("Average price is " + alfredos.averagePrice() + "€");
+
+        alfredos.findAllByTyp(Typ.FOOD);
+        alfredos.findAllByTyp(Typ.DRINK);
+
+        System.out.println("All Items cheaper than 5.50 are:\n"+alfredos.findAllCheaperThan(5.50));
+        alfredos.findAllCheaperThan(5.50);
+
+        System.out.println("Food cheaper than 5.50 is:\n" + alfredos.findAllByTypAndCheaperThan(Typ.FOOD,5.50));
+
+        alfredos.findItemByName("Lasagne");
+
 
     }
 }
