@@ -10,9 +10,9 @@ class RestaurantTest {
     @Test
     void shouldReturn50Point50(){
         var restaurant = new Restaurant();
-        var employe = new Employe("jim",200.00,20.50,true, LocalDate.of(2001,11,25),1L);
-        var employe2 = new Employe("alex",200.00,30.00,true, LocalDate.of(2003,11,25),2L);
-        ArrayList<Employe> employes = new ArrayList<>();
+        var employe = new Employee("jim",200.00,20.50,true, LocalDate.of(2001,11,25),1L);
+        var employe2 = new Employee("alex",200.00,30.00,true, LocalDate.of(2003,11,25),2L);
+        ArrayList<Employee> employes = new ArrayList<>();
         employes.add(employe);
         employes.add(employe2);
         restaurant.setEmployeList(employes);
@@ -23,11 +23,11 @@ class RestaurantTest {
     @Test
     void shouldReturn100Point50(){
         var restaurant = new Restaurant();
-        var employe = new Employe("jim",200.00,20.50,true, LocalDate.of(2001,11,25),1L);
-        var employe2 = new Employe("alex",200.00,30.00,true, LocalDate.of(2003,11,25),2L);
-        var employe3 = new Employe("sven",200.00,50.00,true, LocalDate.of(2003,11,25),2L);
+        var employe = new Employee("jim",200.00,20.50,true, LocalDate.of(2001,11,25),1L);
+        var employe2 = new Employee("alex",200.00,30.00,true, LocalDate.of(2003,11,25),2L);
+        var employe3 = new Employee("sven",200.00,50.00,true, LocalDate.of(2003,11,25),2L);
 
-        ArrayList<Employe> employes = new ArrayList<>();
+        ArrayList<Employee> employes = new ArrayList<>();
         employes.add(employe);
         employes.add(employe2);
         employes.add(employe3);
@@ -91,11 +91,11 @@ class RestaurantTest {
     @Test
     void shouldReturn300Point50(){
         var restaurant = new Restaurant();
-        var employe = new Employe("jim",200.00,20.50,true, LocalDate.of(2001,11,25),1L);
-        var employe2 = new Employe("alex",200.00,300.50,true, LocalDate.of(2003,11,25),2L);
-        var employe3 = new Employe("sven",200.00,50.00,true, LocalDate.of(2003,11,25),3L);
+        var employe = new Employee("jim",200.00,20.50,true, LocalDate.of(2001,11,25),1L);
+        var employe2 = new Employee("alex",200.00,300.50,true, LocalDate.of(2003,11,25),2L);
+        var employe3 = new Employee("sven",200.00,50.00,true, LocalDate.of(2003,11,25),3L);
 
-        ArrayList<Employe> employes = new ArrayList<>();
+        ArrayList<Employee> employes = new ArrayList<>();
         employes.add(employe);
         employes.add(employe2);
         employes.add(employe3);
@@ -107,11 +107,11 @@ class RestaurantTest {
     @Test
     void shouldThrowIllegalArgumentException(){
         var restaurant = new Restaurant();
-        var employe = new Employe("jim",200.00,20.50,true, LocalDate.of(2001,11,25),1L);
-        var employe2 = new Employe("alex",200.00,300.50,true, LocalDate.of(2003,11,25),2L);
-        var employe3 = new Employe("sven",200.00,50.00,true, LocalDate.of(2003,11,25),3L);
+        var employe = new Employee("jim",200.00,20.50,true, LocalDate.of(2001,11,25),1L);
+        var employe2 = new Employee("alex",200.00,300.50,true, LocalDate.of(2003,11,25),2L);
+        var employe3 = new Employee("sven",200.00,50.00,true, LocalDate.of(2003,11,25),3L);
 
-        ArrayList<Employe> employes = new ArrayList<>();
+        ArrayList<Employee> employes = new ArrayList<>();
         employes.add(employe);
         employes.add(employe2);
         employes.add(employe3);
@@ -126,11 +126,11 @@ class RestaurantTest {
     @Test
     void shouldThrowNullPointerException(){
         var restaurant = new Restaurant();
-        var employe = new Employe("jim",200.00,20.50,true, LocalDate.of(2001,11,25),1L);
-        var employe2 = new Employe("alex",200.00,300.50,true, LocalDate.of(2003,11,25),2L);
-        var employe3 = new Employe(3L,200.00,50.00,true, LocalDate.of(2003,11,25));
+        var employe = new Employee("jim",200.00,20.50,true, LocalDate.of(2001,11,25),1L);
+        var employe2 = new Employee("alex",200.00,300.50,true, LocalDate.of(2003,11,25),2L);
+        var employe3 = new Employee(3L,200.00,50.00,true, LocalDate.of(2003,11,25));
 
-        ArrayList<Employe> employes = new ArrayList<>();
+        ArrayList<Employee> employes = new ArrayList<>();
         employes.add(employe);
         employes.add(employe2);
         employes.add(employe3);
@@ -140,5 +140,25 @@ class RestaurantTest {
                 () ->{
                     restaurant.payEmployeById(3L);
                 });
+    }
+
+    @Test
+    void shouldThrowIllegalArgumentExceptionB() {
+        var restaurant = new Restaurant();
+        var item = new Item("asf", true, 1.00);
+        var item2 = new Item("asdf", true, 6.00);
+        var item3 = new Item("ashdfgf", true, 3.50);
+        var item4 = new Item("ajssf", true, 9.50);
+        ArrayList<Item> items = new ArrayList<>();
+        items.add(item);
+        items.add(item2);
+        items.add(item3);
+        items.add(item4);
+        restaurant.setMenu(items);
+        assertThrows(IllegalArgumentException.class,
+                () ->{
+                    restaurant.createNewBaseItem("asf",true,2.50);
+                });
+
     }
 }

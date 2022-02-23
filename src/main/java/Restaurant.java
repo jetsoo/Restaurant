@@ -1,14 +1,13 @@
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class Restaurant {
 
     private String name;
     private Double money;
-    private ArrayList<Employe> employeList;
+    private ArrayList<Employee> employeList;
     private ArrayList<Item> menu;
 
-    public Restaurant(String name, Double money, ArrayList<Employe> employeList, ArrayList<Item> menu) {
+    public Restaurant(String name, Double money, ArrayList<Employee> employeList, ArrayList<Item> menu) {
         this.name = name;
         this.money = money;
         this.employeList = employeList;
@@ -21,7 +20,8 @@ public class Restaurant {
     public double payAllEmployeesFull(){
         double payment = 0;
         for(int i = 0; i< this.employeList.size();i++){
-            payment += this.employeList.get(i).getMonthlySalaray();
+            payment += this.employeList.get(i).getMonthlySalary();
+            this.employeList.get(i).getOneMonthPay();
         }
         System.out.println("All salarys payed in full: " + payment + "€");
         this.money -= payment;
@@ -57,19 +57,30 @@ public class Restaurant {
         double salary = -1;
         for(int i = 0; i< this.employeList.size();i++){
             if(this.employeList.get(i).getId() == id){
-                salary = this.employeList.get(i).getMonthlySalaray();
+                salary = this.employeList.get(i).getMonthlySalary();
                 name = this.employeList.get(i).getName();
+                this.employeList.get(i).getOneMonthPay();
             }
         }
         if(salary == -1){
             throw new IllegalArgumentException("no employee with this id found");
         }
         if(name.isEmpty()){
-            throw new NullPointerException("no corresponding name found,please enter a name for the employee");
+            throw new NullPointerException("no corresponding name found for the employee with id" + id + " ,please enter a name for the employee");
         }
         System.out.println(name + " is being paid his monthly salary of " + salary + "€");
         this.money -= salary;
         return  salary;
+    }
+
+    public void createNewBaseItem(String name, boolean available, double price){
+        for(int i = 0; i< this.menu.size();i++){
+            if(name.equals(this.menu.get(i).getName())){
+                throw new IllegalArgumentException("item with give name already exists");
+            }
+        }
+        Item item = new Item(name,available,price);
+        this.menu.add(item);
     }
 
     public String getName() {
@@ -88,11 +99,11 @@ public class Restaurant {
         this.money = money;
     }
 
-    public ArrayList<Employe> getEmployeList() {
+    public ArrayList<Employee> getEmployeList() {
         return employeList;
     }
 
-    public void setEmployeList(ArrayList<Employe> employeList) {
+    public void setEmployeList(ArrayList<Employee> employeList) {
         this.employeList = employeList;
     }
 

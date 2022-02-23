@@ -3,11 +3,11 @@ import java.util.ArrayList;
 
 public class Main {
     public static void main(String[] args){
-        Employe employe1 = new Employe("alex",200.00,700.50,true, LocalDate.of(1989,6,13),1L);
-        Employe employe2 = new Employe("sven",400.00,850.50,true, LocalDate.of(1995,8,18),2L);
-        Employe employe3 = new Employe("julia",740.00,790.50,true, LocalDate.of(1998,2,24),3L);
+        Employee employe1 = new Employee("alex",200.00,700.50,true, LocalDate.of(1989,6,13),1L);
+        Employee employe2 = new Employee("sven",400.00,850.50,true, LocalDate.of(1995,8,18),2L);
+        Employee employe3 = new Employee("julia",740.00,790.50,true, LocalDate.of(1998,2,24),3L);
 
-        ArrayList<Employe> employes = new ArrayList<>();
+        ArrayList<Employee> employes = new ArrayList<>();
         employes.add(employe1);
         employes.add(employe2);
         employes.add(employe3);

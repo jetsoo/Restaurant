@@ -1,32 +1,36 @@
 import java.time.LocalDate;
 
-public class Employe {
+public class Employee {
 
     private String name;
     private Long id;
     private Double money;
-    private Double monthlySalaray;
+    private Double monthlySalary;
     private boolean fullHours;
     private LocalDate birthday;
     private Integer age;
 
-    public Employe(String name, Double money, Double monthlySalaray, boolean fullHours, LocalDate birthday,Long id) {
+    public Employee(String name, Double money, Double monthlySalaray, boolean fullHours, LocalDate birthday, Long id) {
         this.name = name;
         this.money = money;
-        this.monthlySalaray = monthlySalaray;
+        this.monthlySalary = monthlySalaray;
         this.fullHours = fullHours;
         this.birthday = birthday;
         this.age = birthday.compareTo(LocalDate.now());
         this.id = id;
     }
 
-    public Employe(Long id, Double money, Double monthlySalaray, boolean fullHours, LocalDate birthday) {
+    public Employee(Long id, Double money, Double monthlySalaray, boolean fullHours, LocalDate birthday) {
         this.id = id;
         this.money = money;
-        this.monthlySalaray = monthlySalaray;
+        this.monthlySalary = monthlySalaray;
         this.fullHours = fullHours;
         this.birthday = birthday;
 
+    }
+
+    public void getOneMonthPay(){
+        this.money += this.monthlySalary;
     }
 
 
@@ -55,12 +59,12 @@ public class Employe {
         this.money = money;
     }
 
-    public Double getMonthlySalaray() {
-        return monthlySalaray;
+    public Double getMonthlySalary() {
+        return monthlySalary;
     }
 
-    public void setMonthlySalaray(Double monthlySalaray) {
-        this.monthlySalaray = monthlySalaray;
+    public void setMonthlySalary(Double monthlySalary) {
+        this.monthlySalary = monthlySalary;
     }
 
     public boolean isFullHours() {
