@@ -43,7 +43,7 @@ public class Main {
 
         System.out.println("Food cheaper than 5.50 is:\n" + alfredos.findAllByTypAndCheaperThan(Typ.FOOD,5.50));
 
-        alfredos.findItemByName("Lasagne");
+        alfredos.findItemPriceByName("Lasagne");
 
 
     }

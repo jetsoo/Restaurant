@@ -28,7 +28,7 @@ public class Restaurant {
         return payment;
     }
 
-    public double findItemByName(String name){
+    public double findItemPriceByName(String name){
         double price = -1.00;
         for(int i = 0; i<this.menu.size();i++){
             if(this.menu.get(i).getName().equals(name)){

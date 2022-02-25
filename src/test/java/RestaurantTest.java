@@ -2,10 +2,172 @@ import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class RestaurantTest {
+
+    @Test
+    void shouldReturnItemsCheaperThanFiveAndTypDrink(){
+        var restaurant = new Restaurant();
+        var item = new Item("asf",true,1.50,Typ.DESERT);
+        var item2 = new Item("asdf",true,6.50,Typ.DRINK);
+        var item3 = new Item("coffee",true,2.50,Typ.DRINK);
+        var item5 = new Item("klkloe",true,4.50,Typ.DRINK);
+        var item4 = new Item("ajssf",true,9.50,Typ.DRINK);
+        ArrayList<Item> items = new ArrayList<>();
+        items.add(item);
+        items.add(item2);
+        items.add(item3);
+        items.add(item4);
+        items.add(item5);
+        restaurant.setMenu(items);
+        List<Item> cheapAndTyp = new ArrayList<>();
+        cheapAndTyp.add(item3);
+        cheapAndTyp.add(item5);
+        assertEquals(cheapAndTyp,restaurant.findAllByTypAndCheaperThan(Typ.DRINK,5.00));
+    }
+
+    @Test
+    void shouldThrowIllegalArgumentExceptionG(){
+        var restaurant = new Restaurant();
+        var item = new Item("asf",true,1.50,Typ.DESERT);
+        var item2 = new Item("asdf",true,6.50,Typ.DRINK);
+        var item3 = new Item("coffee",true,2.50,Typ.DRINK);
+        var item5 = new Item("klkloe",true,4.50,Typ.DRINK);
+        var item4 = new Item("ajssf",true,9.50,Typ.DRINK);
+        ArrayList<Item> items = new ArrayList<>();
+        items.add(item);
+        items.add(item2);
+        items.add(item3);
+        items.add(item4);
+        items.add(item5);
+        restaurant.setMenu(items);
+        assertThrows(IllegalArgumentException.class,
+                () ->{
+                    restaurant.findAllByTypAndCheaperThan(Typ.DRINK,1.00);
+                });
+    }
+
+    @Test
+    void shouldReturnItemsCheaperThan5(){
+        var restaurant = new Restaurant();
+        var item = new Item("asf",true,1.50,Typ.DESERT);
+        var item2 = new Item("asdf",true,6.50,Typ.DRINK);
+        var item3 = new Item("coffee",true,2.50,Typ.DRINK);
+        var item4 = new Item("ajssf",true,9.50,Typ.DRINK);
+        ArrayList<Item> items = new ArrayList<>();
+        items.add(item);
+        items.add(item2);
+        items.add(item3);
+        items.add(item4);
+        restaurant.setMenu(items);
+        List<Item> cheapItems = new ArrayList<>();
+        cheapItems.add(item);
+        cheapItems.add(item3);
+        assertEquals(cheapItems,restaurant.findAllCheaperThan(5.00));
+    }
+
+    @Test
+    void shouldThrowIllegalArgumentExceptionF(){
+        var restaurant = new Restaurant();
+        var item = new Item("asf",true,3.50,Typ.DESERT);
+        var item2 = new Item("asdf",true,6.50,Typ.DRINK);
+        var item3 = new Item("coffee",true,4.50,Typ.DRINK);
+        var item4 = new Item("ajssf",true,9.50,Typ.DRINK);
+        ArrayList<Item> items = new ArrayList<>();
+        items.add(item);
+        items.add(item2);
+        items.add(item3);
+        items.add(item4);
+        restaurant.setMenu(items);
+        List<Item> cheapItems = new ArrayList<>();
+        cheapItems.add(item);
+        cheapItems.add(item3);
+        assertThrows(IllegalArgumentException.class,
+                () ->{
+                    restaurant.findAllCheaperThan(3.00);
+                });
+    }
+
+    @Test
+    void shouldReturn2Point50(){
+        var restaurant = new Restaurant();
+        var item = new Item("asf",true,1.50,Typ.DESERT);
+        var item2 = new Item("asdf",true,6.50,Typ.DRINK);
+        var item3 = new Item("coffee",true,2.50,Typ.DRINK);
+        var item4 = new Item("ajssf",true,9.50,Typ.DRINK);
+        ArrayList<Item> items = new ArrayList<>();
+        items.add(item);
+        items.add(item2);
+        items.add(item3);
+        items.add(item4);
+        restaurant.setMenu(items);
+        assertEquals(2.50,restaurant.findItemPriceByName("coffee"));
+    }
+
+    @Test
+    void shouldThrowIllegalArgumentExceptionC(){
+        var restaurant = new Restaurant();
+        var item = new Item("asf",true,1.50,Typ.DESERT);
+        var item2 = new Item("asdf",true,6.50,Typ.DRINK);
+        var item3 = new Item("coffee",true,2.50,Typ.DRINK);
+        var item4 = new Item("ajssf",true,9.50,Typ.DRINK);
+        ArrayList<Item> items = new ArrayList<>();
+        items.add(item);
+        items.add(item2);
+        items.add(item3);
+        items.add(item4);
+        restaurant.setMenu(items);
+        assertThrows(IllegalArgumentException.class,
+                () ->{
+                    restaurant.findItemPriceByName("lasagne");
+                });
+    }
+
+    @Test
+    void shouldReturnAllDrinks(){
+        var restaurant = new Restaurant();
+        var item = new Item("asf",true,1.50,Typ.DESERT);
+        var item2 = new Item("asdf",true,6.50,Typ.DRINK);
+        var item3 = new Item("coffee",true,2.50,Typ.DRINK);
+        var item4 = new Item("ajssf",true,9.50,Typ.DRINK);
+        ArrayList<Item> items = new ArrayList<>();
+        items.add(item);
+        items.add(item2);
+        items.add(item3);
+        items.add(item4);
+        restaurant.setMenu(items);
+        List<Item> drinks = new ArrayList<>();
+        drinks.add(item2);
+        drinks.add(item3);
+        drinks.add(item4);
+        assertEquals(drinks,restaurant.findAllByTyp(Typ.DRINK));
+    }
+
+    @Test
+    void shouldThrowIllegalArgumentExceptionD(){
+        var restaurant = new Restaurant();
+        var item = new Item("asf",true,1.50,Typ.DESERT);
+        var item2 = new Item("asdf",true,6.50,Typ.DRINK);
+        var item3 = new Item("coffee",true,2.50,Typ.DRINK);
+        var item4 = new Item("ajssf",true,9.50,Typ.DRINK);
+        ArrayList<Item> items = new ArrayList<>();
+        items.add(item);
+        items.add(item2);
+        items.add(item3);
+        items.add(item4);
+        restaurant.setMenu(items);
+        List<Item> drinks = new ArrayList<>();
+        drinks.add(item2);
+        drinks.add(item3);
+        drinks.add(item4);
+        assertThrows(IllegalArgumentException.class,
+                () ->{
+                    restaurant.findAllByTyp(Typ.MAIN_COURSE);
+                });
+    }
 
     @Test
     void shouldReturn50Point50(){
